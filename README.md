@@ -1,5 +1,5 @@
 # jtnnencoder
-Pip installable version of the Junction Tree Variational Autoencoder https://arxiv.org/abs/1802.04364.
+Easy-to-install version of the Junction Tree Variational Autoencoder https://arxiv.org/abs/1802.04364.
 The original, full repository can be found here: https://github.com/wengong-jin/icml18-jtnn
 
 Intended to be used as a simple interface for generating molecular features for molecules based on JTNN latent vectors.
