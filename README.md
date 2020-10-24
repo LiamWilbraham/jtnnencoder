@@ -7,6 +7,7 @@ Intended to be used as a simple interface for generating molecular features for 
 ## Install
 ```
 $ pip install jtnnencoder
+$ pip install torch
 ```
 
 You will also need rdkit:
