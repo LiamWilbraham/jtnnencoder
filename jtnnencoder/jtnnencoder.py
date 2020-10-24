@@ -22,7 +22,6 @@ class JTNNEmbed:
         depth: int = 3,
         vocab_path: str = VOCAB_PATH,
         model_path: str = MODEL_PATH,
-        gpu: int = 0
     ) -> None:
         """
         Args:
@@ -33,8 +32,6 @@ class JTNNEmbed:
             depth (int, optional): Defaults to 3.
             vocab_path (str, optional): Defaults to VOCAB_PATH.
             model_path (str, optional): Defaults to MODEL_PATH.
-            gpu (int, optional): Defaults to -1 (use cpu). Specify an integer >= 0 corresponding
-                to desired gpu index.
         """
 
         self.smiles = smiles
@@ -44,14 +41,12 @@ class JTNNEmbed:
         self.depth = depth
         self.vocab_path = vocab_path
         self.model_path = model_path
-        self.gpu = gpu
 
         vocab = Vocab([x.strip("\r\n ") for x in open(self.vocab_path)])
 
         self.model = JTNNVAE(vocab, self.hidden_size, self.latent_size, self.depth)
         self.model.load_state_dict(torch.load(self.model_path))
-        device = torch.device(f"cuda:{gpu}" if torch.cuda.is_available() else "cpu")
-        self.model = self.model.to(device)
+        self.model = self.model.cpu()
 
     def get_features(self) -> np.ndarray:
         """
@@ -62,6 +57,7 @@ class JTNNEmbed:
         """
         features = []
         batch_size = self.batch_size
+
         for i in range(0, len(self.smiles), batch_size):
             batch = self.smiles[i:i + batch_size]
             mol_vec = self.model.encode_latent_mean(batch)
