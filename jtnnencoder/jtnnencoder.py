@@ -45,7 +45,7 @@ class JTNNEmbed:
         vocab = Vocab([x.strip("\r\n ") for x in open(self.vocab_path)])
 
         self.model = JTNNVAE(vocab, self.hidden_size, self.latent_size, self.depth)
-        self.model.load_state_dict(torch.load(self.model_path))
+        self.model.load_state_dict(torch.load(self.model_path, map_location=torch.device('cpu')))
         self.model = self.model.cpu()
 
     def get_features(self) -> np.ndarray:

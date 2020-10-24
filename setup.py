@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='jtnnencoder',
-    version='0.4',
+    version='0.5',
     license='MIT',
     description='An Easy to install version of the jtnn encoder for generation of latent molecule features.',
     long_description=long_description,
@@ -15,6 +15,7 @@ setuptools.setup(
     url='https://github.com/LiamWilbraham/jtnnencoder',
     download_url='https://github.com/LiamWilbraham/jtnnencoder/archive/v_01.tar.gz',
     packages=setuptools.find_packages(),
+    include_package_data=True,
     install_requires=[
         'numpy',
         'scipy'
