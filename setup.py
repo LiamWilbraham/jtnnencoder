@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='jtnnencoder',
-    version='0.5',
+    version='0.1',
     license='MIT',
     description='An Easy to install version of the jtnn encoder for generation of latent molecule features.',
     long_description=long_description,
